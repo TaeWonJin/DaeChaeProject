@@ -1,0 +1,19 @@
+<html>
+    <head>
+    </head>
+    <body>
+            <h1>서브보컬만!!</h1>
+        <form action="{% url 'home' %}">
+        {% for m in sub_vocals %}
+        <ul class="list">
+                <li class="list-group">{{m.name}}</li>
+                <li class="list-group">{{m.age}}</li>
+                <li class="list-group">{{m.brith}}</li>
+                <li class="list-group">{{m.nationality}}</li>
+                <li class="list-group">{{m.position}}</li>
+        </ul>
+    
+        {% endfor %}
+        <button type="submit" class="btn btn-success">일본출신 보러가기</button>
+        
+</body>
