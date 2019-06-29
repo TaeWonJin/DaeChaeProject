@@ -1,0 +1,25 @@
+
+<body>
+    <div class="container">
+    {% for blog in posts %}
+    제목 : {{blog.title}}<br>
+    날짜 : {{blog.pub_date}}<br>
+    내용 : <a href="{% url 'detail' blog.id %}">내용 보기</a>
+    <br></br>
+    </div>
+    {% endfor %}
+    
+    {% if posts.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{posts.previous_page_number}}"> 뒤로 </a>
+    {% endif %}
+
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}"> 앞으로 </a>
+    <a href="?page={{posts.paginator.num_pages}}"> 마지막 </a>
+    {% endif %}
+</body>

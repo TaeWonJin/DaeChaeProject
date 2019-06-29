@@ -2,18 +2,46 @@
     <head>
     </head>
     <body>
-        <h1>일본출신만!!</h1>
-        <form action="{% url 'home2' %}">
-        {% for m in japanese %}
-        <ul class="list">
-                <li class="list-group">{{m.name}}</li>
-                <li class="list-group">{{m.age}}</li>
-                <li class="list-group">{{m.brith}}</li>
-                <li class="list-group">{{m.nationality}}</li>
-                <li class="list-group">{{m.position}}</li>
-        </ul>
-        {% endfor %}
-        <button type="submit" class="btn btn-success">서브보컬 보러가기</button>
+      <div class="container">
+
+        {% if user.is_active %}
+            <a href = "{% url 'new' %}">글쓰기</a>
+            <a href = "{% url 'logout' %}">로그아웃</a>
+            <a href = "{% url 'home2'%}">되면좋게따</a>
+    
+    
+    
+            
+        {% else %}
         
+        <form method = "POST" action="{%url 'home'%}">
+            {% csrf_token %}
+            Username:
+            <br><br>
+            <input name="username" type="text" value="">
+            <br>
+            Password:
+            <br>
+            <input name="password" type="pasword" value="">
+            <br>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Login">
+            <button type="button" onclick="location.href='{% url 'signup' %}' ">Sign up</button>
+    
+        </form>
+        
+    
+        <h1>블로그 글이 안나옵니다 T_T 다음주까지 아예 새로 프로젝트 만들어올게요</h1>
+        {% endif %}
+    
+        {% for blog in blogs.all%}
+        <br><br>
+        <h1>제목 : {{blog.title}} </h1>
+        <p> 날씨 : {{blog.pub_date}} </p>
+        <p> 본문 미리보기 : {{blog.summary}}<a href="{%url 'detail' blog.id%}">...more</a></p>
+        {%endfor%}
+    
+    </div>
+        </form>
     </body>
 
